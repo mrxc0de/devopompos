@@ -30,6 +30,10 @@ use Joaopaulolndev\FilamentGeneralSettings\FilamentGeneralSettingsPlugin;
 use App\Filament\Resources\UserResource;
 use Awcodes\Overlook\OverlookPlugin;
 use Awcodes\Overlook\Widgets\OverlookWidget;
+use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
+use App\Livewire\CustomProfileComponent;
+use Kenepa\ResourceLock\ResourceLockPlugin;
+use Kenepa\Banner\BannerPlugin;
 
 
 class AdminPanelProvider extends PanelProvider
@@ -77,6 +81,8 @@ class AdminPanelProvider extends PanelProvider
                 FilamentBackgroundsPlugin::make(),
                 FilamentMailsPlugin::make(),
                 FilamentGeneralSettingsPlugin::make(),
+                FilamentEditProfilePlugin::make(),
+                BannerPlugin::make(),
                 \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
                 OverlookPlugin::make()
                     ->sort(2)
@@ -88,6 +94,7 @@ class AdminPanelProvider extends PanelProvider
                         'xl' => 5,
                         '2xl' => null,
                     ]),
+                ResourceLockPlugin::make(),
                 FilamentSpatieLaravelBackupPlugin::make()
             ])
             ->resources([
