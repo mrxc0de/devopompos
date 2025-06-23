@@ -20,6 +20,8 @@ class UserResource extends Resource
     protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Settings';
+    protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form
     {
@@ -30,6 +32,27 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('email')
                     ->email()
                     ->required(),
+                Forms\Components\TextInput::make('telegram_username')
+                    ->label('Telegram Username')
+                    ->nullable(),
+                Forms\Components\TextInput::make('telegram_id')
+                    ->label('Telegram ID')
+                    ->nullable(),
+                Forms\Components\Select::make('title')
+                    ->label('Title')
+                    ->options([
+                        'Junior Laravel Developer' => 'Junior Laravel Developer',
+                        'Mid Laravel Developer' => 'Mid Laravel Developer',
+                        'Senior Laravel Developer' => 'Senior Laravel Developer',
+                        'Junior React Developer' => 'Junior React Developer',
+                        'Mid React Developer' => 'Mid React Developer',
+                        'Senior React Developer' => 'Senior React Developer',
+                        'Fullstack Developer' => 'Fullstack Developer',
+                        'DevOps Engineer' => 'DevOps Engineer',
+                        'QA Engineer' => 'QA Engineer',
+                    ])
+                    ->searchable()
+                    ->nullable(),
                 // Forms\Components\DateTimePicker::make('email_verified_at')
                 //     ->label('Email Verified At')
                 //     ->nullable()
@@ -59,6 +82,15 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('telegram_username')
+                    ->label('Telegram Username')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('telegram_id')
+                    ->label('Telegram ID')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('title')
+                    ->label('Title')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email_verified_at')
                     ->label('Email Verified At')

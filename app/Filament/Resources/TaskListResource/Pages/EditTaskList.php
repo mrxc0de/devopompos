@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\TaskLinkResource\Pages;
+namespace App\Filament\Resources\TaskListResource\Pages;
 
-use App\Filament\Resources\TaskLinkResource;
+use App\Filament\Resources\TaskListResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditTaskLink extends EditRecord
+class EditTaskList extends EditRecord
 {
-    protected static string $resource = TaskLinkResource::class;
+    protected static string $resource = TaskListResource::class;
 
     protected function getHeaderActions(): array
     {
