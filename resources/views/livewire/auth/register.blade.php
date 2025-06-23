@@ -14,6 +14,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
     public string $password = '';
     public string $password_confirmation = '';
     public bool $is_developer = false;
+    public string $title = '';
 
     /**
      * Handle an incoming registration request.
@@ -25,6 +26,10 @@ new #[Layout('components.layouts.auth')] class extends Component {
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
         ]);
+
+        if ($this->is_developer) {
+            $validated['title'] = $this->title;
+        }
 
         $validated['password'] = Hash::make($validated['password']);
 
@@ -66,6 +71,21 @@ new #[Layout('components.layouts.auth')] class extends Component {
                 class="rounded border-gray-300 text-primary shadow-sm focus:ring focus:ring-primary focus:ring-opacity-50">
             <span>I am a developer</span>
         </label>
+
+        <div x-show="$wire.is_developer" x-cloak>
+            <flux:select wire:model.defer="title" label="Title" required>
+                <option value="">Select a title</option>
+                <option value="Junior Laravel Developer">Junior Laravel Developer</option>
+                <option value="Mid Laravel Developer">Mid Laravel Developer</option>
+                <option value="Senior Laravel Developer">Senior Laravel Developer</option>
+                <option value="Junior React Developer">Junior React Developer</option>
+                <option value="Mid React Developer">Mid React Developer</option>
+                <option value="Senior React Developer">Senior React Developer</option>
+                <option value="Fullstack Developer">Fullstack Developer</option>
+                <option value="DevOps Engineer">DevOps Engineer</option>
+                <option value="QA Engineer">QA Engineer</option>
+            </flux:select>
+        </div>
 
         <div class="flex items-center justify-end">
             <flux:button type="submit" variant="primary" class="w-full">
