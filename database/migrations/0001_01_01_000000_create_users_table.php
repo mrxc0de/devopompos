@@ -14,7 +14,20 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('telegram_username')->nullable();
+            $table->string('telegram_id')->nullable();
             $table->string('email')->unique();
+            $table->enum('title', [
+                'Junior Laravel Developer',
+                'Mid Laravel Developer',
+                'Senior Laravel Developer',
+                'Junior React Developer',
+                'Mid React Developer',
+                'Senior React Developer',
+                'Fullstack Developer',
+                'DevOps Engineer',
+                'QA Engineer',
+            ])->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
