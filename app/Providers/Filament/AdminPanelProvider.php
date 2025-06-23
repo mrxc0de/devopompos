@@ -37,6 +37,7 @@ use Kenepa\Banner\BannerPlugin;
 use Monzer\FilamentChatifyIntegration\ChatifyPlugin;
 use Brickx\MaintenanceSwitch\MaintenanceSwitchPlugin;
 use Devonab\FilamentEasyFooter\EasyFooterPlugin;
+use Njxqlus\FilamentProgressbar\FilamentProgressbarPlugin;
 
 
 class AdminPanelProvider extends PanelProvider
@@ -90,6 +91,7 @@ class AdminPanelProvider extends PanelProvider
                 ChatifyPlugin::make(),
                 MaintenanceSwitchPlugin::make(),
                 EasyFooterPlugin::make(),
+                FilamentProgressbarPlugin::make()->color('#29b'),
                 OverlookPlugin::make()
                     ->sort(2)
                     ->columns([
