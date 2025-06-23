@@ -38,6 +38,7 @@ use Monzer\FilamentChatifyIntegration\ChatifyPlugin;
 use Brickx\MaintenanceSwitch\MaintenanceSwitchPlugin;
 use Devonab\FilamentEasyFooter\EasyFooterPlugin;
 use Njxqlus\FilamentProgressbar\FilamentProgressbarPlugin;
+use Cmsmaxinc\FilamentErrorPages\FilamentErrorPagesPlugin;
 
 
 class AdminPanelProvider extends PanelProvider
@@ -87,6 +88,7 @@ class AdminPanelProvider extends PanelProvider
                 FilamentGeneralSettingsPlugin::make(),
                 FilamentEditProfilePlugin::make(),
                 BannerPlugin::make(),
+                FilamentErrorPagesPlugin::make(),
                 \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
                 ChatifyPlugin::make(),
                 MaintenanceSwitchPlugin::make(),

@@ -10,6 +10,7 @@
         "awcodes/overlook": "^2.2",
         "bezhansalleh/filament-shield": "^3.3",
         "brickx/maintenance-switch": "^1.0",
+        "cmsmaxinc/filament-error-pages": "^1.0",
         "devonab/filament-easy-footer": "^2.0",
         "eightcedars/filament-inactivity-guard": "^0.4.0",
         "filament/filament": "^3.3",
@@ -29,6 +30,7 @@
         "shuvroroy/filament-spatie-laravel-backup": "^2.2",
         "shuvroroy/filament-spatie-laravel-health": "^2.3",
         "swisnl/filament-backgrounds": "^1.1",
+        "tomatophp/filament-types": "*",
         "vormkracht10/filament-mails": "^2.3",
         "z3d0x/filament-logger": "^0.8.0"
     },
