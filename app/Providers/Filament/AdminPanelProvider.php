@@ -34,6 +34,7 @@ use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
 use App\Livewire\CustomProfileComponent;
 use Kenepa\ResourceLock\ResourceLockPlugin;
 use Kenepa\Banner\BannerPlugin;
+use Monzer\FilamentChatifyIntegration\ChatifyPlugin;
 
 
 class AdminPanelProvider extends PanelProvider
@@ -84,6 +85,7 @@ class AdminPanelProvider extends PanelProvider
                 FilamentEditProfilePlugin::make(),
                 BannerPlugin::make(),
                 \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
+                ChatifyPlugin::make(),
                 OverlookPlugin::make()
                     ->sort(2)
                     ->columns([
