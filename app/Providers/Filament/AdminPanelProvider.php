@@ -27,6 +27,7 @@ use Swis\Filament\Backgrounds\FilamentBackgroundsPlugin;
 use Vormkracht10\FilamentMails\Facades\FilamentMails;
 use Vormkracht10\FilamentMails\FilamentMailsPlugin;
 use Joaopaulolndev\FilamentGeneralSettings\FilamentGeneralSettingsPlugin;
+use App\Filament\Resources\UserResource;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -35,7 +36,7 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
-            ->path('admin')
+            ->path('into')
             ->login()
             ->colors([
                 'primary' => Color::Amber,
@@ -75,6 +76,7 @@ class AdminPanelProvider extends PanelProvider
                 FilamentSpatieLaravelBackupPlugin::make()
             ])
             ->resources([
+                UserResource::class,
                 config('filament-logger.activity_resource')
             ])
             ->authMiddleware([
