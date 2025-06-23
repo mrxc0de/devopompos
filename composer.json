@@ -9,6 +9,7 @@
         "php": "^8.2",
         "awcodes/overlook": "^2.2",
         "bezhansalleh/filament-shield": "^3.3",
+        "brickx/maintenance-switch": "^1.0",
         "eightcedars/filament-inactivity-guard": "^0.4.0",
         "filament/filament": "^3.3",
         "filament/notifications": "^3.3",

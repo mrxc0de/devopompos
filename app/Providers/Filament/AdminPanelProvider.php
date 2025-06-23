@@ -35,6 +35,8 @@ use App\Livewire\CustomProfileComponent;
 use Kenepa\ResourceLock\ResourceLockPlugin;
 use Kenepa\Banner\BannerPlugin;
 use Monzer\FilamentChatifyIntegration\ChatifyPlugin;
+use Brickx\MaintenanceSwitch\MaintenanceSwitchPlugin;
+
 
 
 class AdminPanelProvider extends PanelProvider
@@ -86,6 +88,7 @@ class AdminPanelProvider extends PanelProvider
                 BannerPlugin::make(),
                 \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
                 ChatifyPlugin::make(),
+                MaintenanceSwitchPlugin::make(),
                 OverlookPlugin::make()
                     ->sort(2)
                     ->columns([
