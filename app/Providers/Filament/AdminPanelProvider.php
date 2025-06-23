@@ -36,7 +36,7 @@ use Kenepa\ResourceLock\ResourceLockPlugin;
 use Kenepa\Banner\BannerPlugin;
 use Monzer\FilamentChatifyIntegration\ChatifyPlugin;
 use Brickx\MaintenanceSwitch\MaintenanceSwitchPlugin;
-
+use Devonab\FilamentEasyFooter\EasyFooterPlugin;
 
 
 class AdminPanelProvider extends PanelProvider
@@ -89,6 +89,7 @@ class AdminPanelProvider extends PanelProvider
                 \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
                 ChatifyPlugin::make(),
                 MaintenanceSwitchPlugin::make(),
+                EasyFooterPlugin::make(),
                 OverlookPlugin::make()
                     ->sort(2)
                     ->columns([
