@@ -99,3 +99,16 @@ class TaskLinkResource extends Resource
         ];
     }
 }
+
+
+OPOMPOS is inviting you to a scheduled Zoom meeting.
+
+Topic: OPOMPOS Functional Scope Meeting
+Time: Jun 24, 2025 08:00 PM Asia/Yangon
+Join Zoom Meeting
+https://us06web.zoom.us/j/81424684931?pwd=j1OVYNTvfcvgzheTcA46viuJ9iw1L9.1
+
+Meeting ID: 814 2468 4931
+Passcode: 906321
+
+---

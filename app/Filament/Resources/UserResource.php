@@ -19,8 +19,8 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'Settings';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
+    // protected static ?string $navigationGroup = 'Settings';
     protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form
@@ -79,19 +79,51 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('title_image')
+                    ->label(' ')
+                    ->getStateUsing(function ($record) {
+                        $title = $record->title;
+                        if (in_array($title, [
+                            'Junior Laravel Developer',
+                            'Mid Laravel Developer',
+                            'Senior Laravel Developer'
+                        ])) {
+                            return asset('/images/laravel.avif');
+                        } else if (in_array($title, [
+                            'Junior React Developer',
+                            'Mid React Developer',
+                            'Senior React Developer'
+                        ])) {
+                            return asset('/images/react.png');
+                        } else if (in_array($title, [
+                            'Fullstack Developer',
+
+                        ])) {
+                            return asset('/images/full_stack.jpg');
+                        }
+                        return null;
+                    })
+                    ->circular()
+                    ->size(40),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('telegram_username')
-                    ->label('Telegram Username')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('telegram_id')
-                    ->label('Telegram ID')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('title')
                     ->label('Title')
                     ->searchable(),
+                TextColumn::make('roles.name')
+                    ->label('Role')
+                    ->formatStateUsing(fn($state, $record) => $record->getRoleNames()->join(', '))
+                    ->badge()
+                    ->color('primary'),
+                Tables\Columns\TextColumn::make('telegram_username')
+                    ->label('Telegram Username')
+                    ->searchable(),
+                // Tables\Columns\TextColumn::make('telegram_id')
+                //     ->label('Telegram ID')
+                //     ->searchable(),
+
                 Tables\Columns\TextColumn::make('email_verified_at')
                     ->label('Email Verified At')
                     ->dateTime('Y-m-d H:i:s')
@@ -100,18 +132,27 @@ class UserResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('roles.name')
-                    ->label('Role')
-                    ->formatStateUsing(fn($state, $record) => $record->getRoleNames()->join(', '))
-                    ->badge()
-                    ->color('primary'),
+
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('title')
+                    ->label('Title')
+                    ->options([
+                        'Junior Laravel Developer' => 'Junior Laravel Developer',
+                        'Mid Laravel Developer' => 'Mid Laravel Developer',
+                        'Senior Laravel Developer' => 'Senior Laravel Developer',
+                        'Junior React Developer' => 'Junior React Developer',
+                        'Mid React Developer' => 'Mid React Developer',
+                        'Senior React Developer' => 'Senior React Developer',
+                        'Fullstack Developer' => 'Fullstack Developer',
+                        'DevOps Engineer' => 'DevOps Engineer',
+                        'QA Engineer' => 'QA Engineer',
+                    ])
+                    ->searchable(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

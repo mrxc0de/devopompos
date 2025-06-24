@@ -24,7 +24,13 @@ class MeetingResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('title')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\DateTimePicker::make('datetime')
+                    ->required(),
+                Forms\Components\Textarea::make('description')
+                    ->maxLength(65535),
             ]);
     }
 
@@ -32,7 +38,14 @@ class MeetingResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('title')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('datetime')
+                    ->dateTime()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('description')
+                    ->limit(50),
             ])
             ->filters([
                 //

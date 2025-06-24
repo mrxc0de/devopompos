@@ -12,4 +12,10 @@ class Announcement extends Model
         'content',
         'posted_by',
     ];
+    // In app/Models/Announcement.php
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'posted_by');
+    }
 }

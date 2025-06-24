@@ -39,14 +39,20 @@ use Brickx\MaintenanceSwitch\MaintenanceSwitchPlugin;
 use Devonab\FilamentEasyFooter\EasyFooterPlugin;
 use Njxqlus\FilamentProgressbar\FilamentProgressbarPlugin;
 use Cmsmaxinc\FilamentErrorPages\FilamentErrorPagesPlugin;
-
+use App\Filament\Resources\TaskListResource;
+use App\Filament\Resources\MeetingResource;
+use App\Filament\Resources\AnnouncementResource;
+use Psy\Readline\Hoa\EventSource;
+use Vormkracht10\FilamentMails\Resources\EventResource;
+use Vormkracht10\FilamentMails\Resources\SuppressionResource;
+use Z3d0X\FilamentLogger\Resources\ActivityResource;
 
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->default()
+            // ->default()
             ->id('admin')
             ->path('into')
             ->login()
@@ -82,30 +88,27 @@ class AdminPanelProvider extends PanelProvider
                 EmailVerificationAlertPlugin::make(),
                 FilamentInactivityGuardPlugin::make(),
                 FilamentSpatieLaravelHealthPlugin::make(),
-                EnvironmentIndicatorPlugin::make(),
+                // EnvironmentIndicatorPlugin::make(),
                 FilamentBackgroundsPlugin::make(),
                 FilamentMailsPlugin::make(),
-                FilamentGeneralSettingsPlugin::make(),
+                // FilamentGeneralSettingsPlugin::make(),
                 FilamentEditProfilePlugin::make(),
                 BannerPlugin::make(),
-                FilamentErrorPagesPlugin::make(),
+                // FilamentErrorPagesPlugin::make(),
                 \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
                 ChatifyPlugin::make(),
-                MaintenanceSwitchPlugin::make(),
+                // MaintenanceSwitchPlugin::make(),
                 EasyFooterPlugin::make(),
                 FilamentProgressbarPlugin::make()->color('#29b'),
                 OverlookPlugin::make()
                     ->sort(2)
-                    ->columns([
-                        'default' => 1,
-                        'sm' => 2,
-                        'md' => 3,
-                        'lg' => 4,
-                        'xl' => 5,
-                        '2xl' => null,
-                    ]),
-                ResourceLockPlugin::make(),
-                FilamentSpatieLaravelBackupPlugin::make()
+                    ->excludes([
+                        EventSource::class,
+                        SuppressionResource::class,
+                        ActivityResource::class,
+                        EventResource::class,
+                    ])
+
             ])
             ->resources([
                 UserResource::class,
