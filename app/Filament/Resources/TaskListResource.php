@@ -28,8 +28,9 @@ class TaskListResource extends Resource
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Textarea::make('description')
-                    ->columnSpanFull(),
+                Forms\Components\MarkdownEditor::make('description')
+                    ->columnSpanFull()
+                    ->required(),
                 Forms\Components\Select::make('assigned_to')
                     ->label('Assigned To')
                     ->relationship('assignee', 'name')
@@ -38,7 +39,11 @@ class TaskListResource extends Resource
                     ->nullable(),
                 Forms\Components\Select::make('added_by')
                     ->label('Added By')
-                    ->relationship('creator', 'name')
+                    ->relationship('creator', 'name', function ($query) {
+                        $query->whereHas('roles', function ($q) {
+                            $q->whereIn('name', ['super_admin', 'Team Lead']);
+                        });
+                    })
                     ->searchable()
                     ->preload()
                     ->required(),
@@ -56,9 +61,10 @@ class TaskListResource extends Resource
                         'medium' => 'Medium',
                         'high' => 'High',
                     ])
+                    ->default('low')
                     ->required(),
                 Forms\Components\DateTimePicker::make('due_date'),
-                Forms\Components\DateTimePicker::make('completed_at'),
+                // Forms\Components\DateTimePicker::make('completed_at'),
             ]);
     }
 
