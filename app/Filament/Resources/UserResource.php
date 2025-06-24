@@ -83,6 +83,7 @@ class UserResource extends Resource
                     ->label(' ')
                     ->getStateUsing(function ($record) {
                         $title = $record->title;
+                        $role = $record->getRoleNames()->first();
                         if (in_array($title, [
                             'Junior Laravel Developer',
                             'Mid Laravel Developer',
@@ -100,6 +101,16 @@ class UserResource extends Resource
 
                         ])) {
                             return asset('/images/full_stack.jpg');
+                        } else if (in_array($title, [
+                            'DevOps Engineer',
+
+                        ])) {
+                            return asset('/images/devops.jpg');
+                        } else if (in_array($role, [
+                            'super_admin',
+
+                        ])) {
+                            return asset('/images/super_admin.png');
                         }
                         return null;
                     })
@@ -153,6 +164,18 @@ class UserResource extends Resource
                         'QA Engineer' => 'QA Engineer',
                     ])
                     ->searchable(),
+                Tables\Filters\Filter::make('leads')
+                    ->label('Team Leads')
+                    ->query(fn(Builder $query) => $query->whereHas('roles', fn($q) => $q->where('name', 'Team Lead'))),
+                Tables\Filters\Filter::make('lara')
+                    ->label('Lara Team')
+                    ->query(fn(Builder $query) => $query->where('title', 'like', '%Laravel%')),
+
+                Tables\Filters\Filter::make('react')
+                    ->label('React Team')
+                    ->query(fn(Builder $query) => $query->where('title', 'like', '%React%')),
+
+
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
